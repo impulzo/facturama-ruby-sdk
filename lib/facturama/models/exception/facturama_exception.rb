@@ -1,18 +1,13 @@
+# frozen_string_literal: true
 
 require_relative 'model_exception'
 
+class FacturamaException < StandardError
+  def initialize(exception_message, exception_details = nil)
+    super exception_message
 
-class FacturamaException < Exception
+    @details = exception_details
+  end
 
-    def initialize( exception_message, exception_details = nil  )
-        super exception_message
-
-        @details = exception_details
-    end
-
-
-    def details
-        @details
-    end
-
+  attr_reader :details
 end

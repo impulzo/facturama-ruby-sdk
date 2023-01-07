@@ -1,18 +1,18 @@
-# -*- encoding : utf-8 -*-
+# frozen_string_literal: true
+
 module Facturama
   module Models
     class Receiver < Model
-      attr_accessor :Id,      
-      :Rfc,
-      :Name,
-      :CfdiUse,
-      :TaxResidence,      
-      :TaxRegistrationNumber,
-      :TaxZipCode,
-      :FiscalRegime
+      attr_accessor :Id,
+                    :Rfc,
+                    :Name,
+                    :CfdiUse,
+                    :TaxResidence,
+                    :TaxRegistrationNumber,
+                    :TaxZipCode,
+                    :FiscalRegime
 
-            
-      validates :Rfc,  presence: true
+      validates :Rfc, presence: true
     end
   end
 end

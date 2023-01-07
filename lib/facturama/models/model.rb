@@ -1,10 +1,10 @@
-# -*- encoding : utf-8 -*-
+# frozen_string_literal: true
+
 require 'active_model'
 
 module Facturama
   module Models
     class Model
-
       include ActiveModel::Validations
       include ActiveModel::Serializers::JSON
 
@@ -17,8 +17,7 @@ module Facturama
         after_initialize
       end
 
-      def after_initialize
-      end
+      def after_initialize; end
 
       def attributes
         instance_values
@@ -29,14 +28,12 @@ module Facturama
       end
 
       def get_instance_values
-        instance_values.delete_if do |k, v|
-          %w(all_errors errors validation_context).include?(k)
+        instance_values.delete_if do |k, _v|
+          %w[all_errors errors validation_context].include?(k)
         end
       end
 
-
       class << self
-
         def has_many_objects(association, class_name)
           define_writer(association, class_name)
           define_reader(association)
@@ -48,7 +45,7 @@ module Facturama
         end
 
         def define_writer(association, class_name)
-          class_eval <<-CODE
+          class_eval <<-CODE, __FILE__, __LINE__ + 1
           def #{association}=(value)
             @#{association} =
             if value.class.name == "Array"
@@ -65,11 +62,7 @@ module Facturama
         def define_reader(association)
           attr_reader association
         end
-
       end
-
-
-
     end
   end
 end
